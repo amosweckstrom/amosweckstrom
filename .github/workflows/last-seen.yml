@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: Compute last-seen and update README
+      - name: Compute last-seen and update files
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -23,6 +23,7 @@ jobs:
           import re
           import subprocess
           from datetime import datetime, timezone
+          from pathlib import Path
 
           USERNAME = "amosweckstrom"
           WORK_EVENTS = {
@@ -30,6 +31,7 @@ jobs:
               "PullRequestReviewCommentEvent", "IssuesEvent", "IssueCommentEvent",
               "CommitCommentEvent", "CreateEvent", "ReleaseEvent",
           }
+          TARGETS = ["README.md", "assets/last-seen.svg"]
 
           events = json.loads(subprocess.check_output(
               ["gh", "api", f"users/{USERNAME}/events/public?per_page=100"]
@@ -49,27 +51,28 @@ jobs:
               else:
                   msg = f"{days} days ago"
 
-          with open("README.md") as f:
-              content = f.read()
-          new_content = re.sub(
-              r"(<!-- LAST_SEEN_START -->).*?(<!-- LAST_SEEN_END -->)",
-              rf"\g<1>{msg}\g<2>",
-              content,
-              flags=re.DOTALL,
-          )
-          with open("README.md", "w") as f:
-              f.write(new_content)
-          print(f"Updated last-seen: {msg}")
+          pattern = re.compile(r"(<!-- LAST_SEEN_START -->).*?(<!-- LAST_SEEN_END -->)", re.DOTALL)
+          for path_str in TARGETS:
+              path = Path(path_str)
+              if not path.exists():
+                  continue
+              content = path.read_text()
+              new_content = pattern.sub(rf"\g<1>{msg}\g<2>", content)
+              if new_content != content:
+                  path.write_text(new_content)
+                  print(f"Updated {path_str}: {msg}")
+              else:
+                  print(f"No change to {path_str}")
           PY
 
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet README.md; then
+          git add README.md assets/last-seen.svg
+          if git diff --cached --quiet; then
             echo "No changes to commit"
           else
-            git add README.md
             git commit -m "chore: update last-seen at my desk"
             git push
           fi

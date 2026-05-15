@@ -1,7 +1,6 @@
 ## Hi, I'm Amos
 
-> [!NOTE]
-> Last seen at my desk: <!-- LAST_SEEN_START -->today<!-- LAST_SEEN_END -->
+<img src="./assets/last-seen.svg" alt="Last seen at my desk" width="720" />
 
 Generalist at Green Factory AI — we use ML and AI agents to make industrial processes smarter, leaner, and less wasteful.
 
