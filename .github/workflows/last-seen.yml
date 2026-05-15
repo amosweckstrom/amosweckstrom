@@ -1,0 +1,75 @@
+name: Update "Last seen at my desk"
+
+on:
+  schedule:
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compute last-seen and update README
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import re
+          import subprocess
+          from datetime import datetime, timezone
+
+          USERNAME = "amosweckstrom"
+          WORK_EVENTS = {
+              "PushEvent", "PullRequestEvent", "PullRequestReviewEvent",
+              "PullRequestReviewCommentEvent", "IssuesEvent", "IssueCommentEvent",
+              "CommitCommentEvent", "CreateEvent", "ReleaseEvent",
+          }
+
+          events = json.loads(subprocess.check_output(
+              ["gh", "api", f"users/{USERNAME}/events/public?per_page=100"]
+          ))
+          work = [e for e in events if e["type"] in WORK_EVENTS]
+
+          if not work:
+              msg = "been a while"
+          else:
+              last = max(work, key=lambda e: e["created_at"])
+              ts = datetime.fromisoformat(last["created_at"].replace("Z", "+00:00"))
+              days = (datetime.now(timezone.utc) - ts).days
+              if days <= 0:
+                  msg = "today"
+              elif days == 1:
+                  msg = "1 day ago"
+              else:
+                  msg = f"{days} days ago"
+
+          with open("README.md") as f:
+              content = f.read()
+          new_content = re.sub(
+              r"(<!-- LAST_SEEN_START -->).*?(<!-- LAST_SEEN_END -->)",
+              rf"\g<1>{msg}\g<2>",
+              content,
+              flags=re.DOTALL,
+          )
+          with open("README.md", "w") as f:
+              f.write(new_content)
+          print(f"Updated last-seen: {msg}")
+          PY
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet README.md; then
+            echo "No changes to commit"
+          else
+            git add README.md
+            git commit -m "chore: update last-seen at my desk"
+            git push
+          fi
