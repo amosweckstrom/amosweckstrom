@@ -1,6 +1,7 @@
 ## Hi, I'm Amos
 
-*Last seen at my desk: <!-- LAST_SEEN_START -->today<!-- LAST_SEEN_END -->*
+> [!NOTE]
+> Last seen at my desk: <!-- LAST_SEEN_START -->today<!-- LAST_SEEN_END -->
 
 Generalist at Green Factory AI — we use ML and AI agents to make industrial processes smarter, leaner, and less wasteful.
 
@@ -18,4 +19,11 @@ Rather be talking to a person than a terminal. If you're nearby and want to grab
 
 ### Find me
 
-- amos.weckstrom@gmail.com
+[![Email](https://img.shields.io/badge/email-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:amos.weckstrom@gmail.com)
+
+<!-- Uncomment and fill in when ready:
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/YOUR-HANDLE)
+[![X](https://img.shields.io/badge/X-000000?style=flat-square&logo=x&logoColor=white)](https://x.com/YOUR-HANDLE)
+[![Green Factory AI](https://img.shields.io/badge/greenfactory.ai-22C55E?style=flat-square&logo=googlechrome&logoColor=white)](https://YOUR-WEBSITE)
+-->
+
