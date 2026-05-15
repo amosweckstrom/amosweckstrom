@@ -2,7 +2,7 @@
 
 <img src="./assets/last-seen.svg" alt="Last seen at my desk" width="720" />
 
-Generalist at Green Factory AI — we use ML and AI agents to make industrial processes smarter, leaner, and less wasteful.
+Generalist at <a href="#"><img src="./assets/gfai-icon.svg" alt="" height="20"/> <img src="./assets/gfai-wordmark.svg" alt="Green Factory AI" height="20"/></a> — we use ML and AI agents to make industrial processes smarter, leaner, and less wasteful.
 
 I do a bit of everything: data science, frontend, agent orchestration. Whichever one is on fire that week.
 
