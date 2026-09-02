@@ -4,7 +4,7 @@
 
 ## Hi, I'm Amos
 
-<img align="right" src="https://media.giphy.com/media/VLzbEtlbwJUFljcRbf/giphy.gif" alt="Serial Experiments Lain, glitched" width="260" />
+<img align="right" src="https://media.giphy.com/media/VLzbEtlbwJUFljcRbf/giphy.gif" alt="Serial Experiments Lain, glitched" width="30%" />
 
 Generalist at <a href="#"><img src="./assets/gfai-icon.svg" alt="" height="20"/> <img src="./assets/gfai-wordmark.svg" alt="Green Factory AI" height="20"/></a>, where we use ML and AI agents to make industrial processes smarter, leaner, and less wasteful.
 
