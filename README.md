@@ -15,9 +15,9 @@ Teaching agents to do my job so I can go be a human.
 ### Find me
 
 [![Email](https://img.shields.io/badge/email-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:amos.weckstrom@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/amosweckstrom/)
 
 <!-- Uncomment and fill in when ready:
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/YOUR-HANDLE)
 [![X](https://img.shields.io/badge/X-000000?style=flat-square&logo=x&logoColor=white)](https://x.com/YOUR-HANDLE)
 [![Green Factory AI](https://img.shields.io/badge/greenfactory.ai-22C55E?style=flat-square&logo=googlechrome&logoColor=white)](https://YOUR-WEBSITE)
 -->
